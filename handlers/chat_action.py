@@ -28,8 +28,8 @@ async def chat_messages(message: types.Message):
             await bot.send_message(
                 chat_id=message.chat.id,
                 text=f"User: {message.from_user.id} {message.from_user.first_name}\n"
-                     f"Dont curse in this chat\n"
-                     f"In third time u will be banned"
+                     f"Don't be rude in chat\n"
+                     f"In third time you will be banned"
             )
             print(user)
             count = None

@@ -3,7 +3,8 @@ from config import dp
 from handlers import (
     start,
     call_back,
-    chat_action
+    chat_action,
+    registration
 )
 
 from database import sql_commands
@@ -14,7 +15,7 @@ async def on_startup(_):
 
 start.register_start_handlers(dp=dp)
 call_back.register_callback_handlers(dp=dp)
-
+registration.register_registration_handlers(dp=dp)
 chat_action.register_chat_actions_handlers(dp=dp)
 
 

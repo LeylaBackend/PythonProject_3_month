@@ -15,7 +15,7 @@ class Database:
         self.connection.execute(sql_queries.CREATE_USER_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_VOICE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_BAN_TABLE_QUERY)
-
+        self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
         self.connection.commit()
 
     def sql_insert_users(self, telegram_id, username, first_name, last_name):
@@ -58,7 +58,13 @@ class Database:
         )
         self.connection.commit()
 
-
+    def sql_insert_user_form_register(self, telegram_id, nickname, biography, geolocation,
+                                      gender, age, photo):
+        self.cursor.execute(
+            sql_queries.INSERT_USER_FORM_QUERY,
+            (None, telegram_id, nickname, biography, geolocation, gender, age, photo,)
+        )
+        self.connection.commit()
 
 
 
