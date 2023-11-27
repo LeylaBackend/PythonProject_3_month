@@ -18,10 +18,15 @@ async def start_keyboard():
         "Another profiles 👾",
         callback_data="another_profiles"
     )
+    reference_menu_button = InlineKeyboardButton(
+        "Reference Menu 🍪",
+        callback_data="reference_menu"
+    )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(another_profile)
+    markup.add(reference_menu_button)
     return markup
 
 
@@ -51,4 +56,18 @@ async def like_dislike_keyboard(owner_telegtam_id):
     )
     markup.add(like_button)
     markup.add(dislike_button)
+    return markup
+
+async def reference_menu_keyboard():
+    markup = InlineKeyboardMarkup()
+    reference_button = InlineKeyboardButton(
+        "Reference Link 🔗",
+        callback_data="reference_link"
+    )
+    reference_profile_button = InlineKeyboardButton(
+        "Referral Profile 👁",
+        callback_data="referral_profile"
+    )
+    markup.add(reference_button)
+    markup.add(reference_profile_button)
     return markup
