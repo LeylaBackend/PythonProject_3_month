@@ -4,8 +4,10 @@ from aiogram import types, Dispatcher
 from config import bot
 from database.sql_commands import Database
 from keyboards.inline_buttens import questionnaire_keyboard
+from scraping.anime_scraper import AnimeScraper
 
-async def start_questionere_call(call: types.CallbackQuery):
+
+async def start_questioner_call(call: types.CallbackQuery):
     await bot.send_message(
         chat_id=call.from_user.id,
         text="Backend or Frontend?",
@@ -28,10 +30,23 @@ async def frontend_call(call: types.CallbackQuery):
         text="You have chosen a Frontend Developer 🎉",
     )
 
+
+async def anime_scraper_call(call: types.CallbackQuery):
+    scraper = AnimeScraper()
+    data = scraper.anime_parse_data()
+    for url in data[1:6]:
+        await bot.send_message(
+            chat_id=call.message.chat.id,
+            text=f"{url}"
+        )
+
+
 def register_callback_handlers(dp: Dispatcher):
-    dp.register_callback_query_handler(start_questionere_call,
+    dp.register_callback_query_handler(start_questioner_call,
                    lambda call: call.data == "start_questionnaire")
     dp.register_callback_query_handler(backend_call,
                    lambda call: call.data == "Backend")
     dp.register_callback_query_handler(frontend_call,
                    lambda call: call.data == "Frontend")
+    dp.register_callback_query_handler(anime_scraper_call,
+                   lambda call: call.data == "anime_serial")
