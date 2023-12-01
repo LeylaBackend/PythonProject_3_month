@@ -4,7 +4,7 @@ from aiogram import types, Dispatcher
 from config import bot
 from database.sql_commands import Database
 from keyboards.inline_buttens import questionnaire_keyboard
-from scraping.anime_scraper import AnimeScraper
+from scraping.anime_scraper import ServiceOScrapper
 
 
 async def start_questioner_call(call: types.CallbackQuery):
@@ -32,12 +32,13 @@ async def frontend_call(call: types.CallbackQuery):
 
 
 async def anime_scraper_call(call: types.CallbackQuery):
-    scraper = AnimeScraper()
-    data = scraper.anime_parse_data()
+    scraper = ServiceOScrapper()
+    data = scraper.parse_data()
+    plus_url = scraper.PLUS_URL
     for url in data[1:6]:
         await bot.send_message(
             chat_id=call.message.chat.id,
-            text=f"{url}"
+            text=f"{plus_url}{url}"
         )
 
 
