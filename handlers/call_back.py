@@ -50,4 +50,4 @@ def register_callback_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(frontend_call,
                    lambda call: call.data == "Frontend")
     dp.register_callback_query_handler(anime_scraper_call,
-                   lambda call: call.data == "anime_serial")
+                   lambda call: call.data == "operator_O!")

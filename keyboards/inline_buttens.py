@@ -23,8 +23,8 @@ async def start_keyboard():
         callback_data="reference_menu"
     )
     latest_anime_button = InlineKeyboardButton(
-        "Anime serial 🐝",
-        callback_data="anime_serial"
+        "operator O! 🐝",
+        callback_data="operator_O!"
     )
     markup.add(questionnaire_button)
     markup.add(registration_button)
