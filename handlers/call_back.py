@@ -4,7 +4,7 @@ from aiogram import types, Dispatcher
 from config import bot
 from database.sql_commands import Database
 from keyboards.inline_buttens import questionnaire_keyboard
-from scraping.anime_scraper import ServiceOScrapper
+from scraping.O_scraper import ServiceOScrapper
 
 
 async def start_questioner_call(call: types.CallbackQuery):
