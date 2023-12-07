@@ -59,16 +59,5 @@ async def chat_messages(message: types.Message):
             text="There is no such command!"
         )
 
-
-# db.sql_inserts_ban_list(
-#     telegram_id=message.from_user.id
-# )
-
-
-#         await message.reply(
-#             text="Hello!"
-#     )
-
-
 def register_chat_actions_handlers(dp: Dispatcher):
     dp.register_message_handler(chat_messages)

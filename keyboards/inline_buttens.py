@@ -22,16 +22,21 @@ async def start_keyboard():
         "Reference Menu 🍪",
         callback_data="reference_menu"
     )
-    latest_anime_button = InlineKeyboardButton(
+    latest_operator_O_button = InlineKeyboardButton(
         "operator O! 🐝",
         callback_data="operator_O!"
+    )
+    async_operator_O_button = InlineKeyboardButton(
+        "async operator O! 🐝🐝",
+        callback_data="async_operator_O!"
     )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(another_profile)
     markup.add(reference_menu_button)
-    markup.add(latest_anime_button)
+    markup.add(latest_operator_O_button)
+    markup.add(async_operator_O_button)
     return markup
 
 
@@ -75,4 +80,13 @@ async def reference_menu_keyboard():
     )
     markup.add(reference_button)
     markup.add(reference_profile_button)
+    return markup
+
+async def save_button():
+    markup = InlineKeyboardMarkup()
+    save_service = InlineKeyboardButton(
+        'save',
+        call_back_data='save_service'
+    )
+    markup.add(save_service)
     return markup

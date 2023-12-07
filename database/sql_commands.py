@@ -2,7 +2,6 @@ import sqlite3
 from database import sql_queries
 
 
-
 class Database:
     def __init__(self):
         self.connection = sqlite3.connect("db.sqlite3")
@@ -26,6 +25,7 @@ class Database:
         except sqlite3.OperationalError:
             pass
 
+        self.connection.execute(sql_queries.CREATE_TABLE_ASYNC)
         self.connection.commit()
 
     def sql_insert_users(self, telegram_id, username, first_name, last_name):
@@ -202,3 +202,10 @@ class Database:
             sql_queries.SELECT_REFERRAL_USERS_QUERY,
             (owner,)
         ).fetchall()
+
+    def sql_insert_service_commands(self, link):
+        self.cursor.execute(
+            sql_queries.INSERT_ASYNC,
+            (None,link)
+        )
+        self.connection.commit()
