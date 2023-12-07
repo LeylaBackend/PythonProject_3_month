@@ -18,6 +18,7 @@ class Database:
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_USERS_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_TABLE_ASYNC)
 
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
@@ -25,7 +26,7 @@ class Database:
         except sqlite3.OperationalError:
             pass
 
-        self.connection.execute(sql_queries.CREATE_TABLE_ASYNC)
+
         self.connection.commit()
 
     def sql_insert_users(self, telegram_id, username, first_name, last_name):
