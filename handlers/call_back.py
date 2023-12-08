@@ -4,9 +4,9 @@ from aiogram import types, Dispatcher
 from config import bot
 from database.sql_commands import Database
 from keyboards.inline_buttens import questionnaire_keyboard, save_button
-from scraping.O_scraper import ServiceOScrapper
-from scraping.async_scraping_O import AsyncScraper
-import re
+# from scraping.O_scraper import ServiceOScrapper
+# from scraping.async_scraping_O import AsyncScraper
+# import re
 
 
 
@@ -36,31 +36,31 @@ async def frontend_call(call: types.CallbackQuery):
     )
 
 
-async def operator_O_scraper_call(call: types.CallbackQuery):
-    scraper = ServiceOScrapper()
-    data = scraper.parse_data()
-    plus_url = scraper.PLUS_URL
-    for url in data[1:6]:
-        await bot.send_message(
-            chat_id=call.message.chat.id,
-            text=f"{plus_url}{url}"
-        )
+# async def operator_O_scraper_call(call: types.CallbackQuery):
+#     scraper = ServiceOScrapper()
+#     data = scraper.parse_data()
+#     plus_url = scraper.PLUS_URL
+#     for url in data[1:6]:
+#         await bot.send_message(
+#             chat_id=call.message.chat.id,
+#             text=f"{plus_url}{url}"
+#         )
 
-async def save_service_call(call: types.CallbackQuery):
-    link = re.search(r'(https?://\S+)', call.message.text)
-    if link:
-        Database().sql_insert_service_commands(link=link.group(0))
+# async def save_service_call(call: types.CallbackQuery):
+#     link = re.search(r'(https?://\S+)', call.message.text)
+#     if link:
+#         Database().sql_insert_service_commands(link=link.group(0))
+#
+#     await bot.send_message(chat_id=call.from_user.id, text='You saved the link')
 
-    await bot.send_message(chat_id=call.from_user.id, text='You saved the link')
-
-async def async_service(call: types.CallbackQuery):
-    # data = await AsyncScraper().async_scrapers()
-    data = await AsyncScraper().async_scrapers()
-    links = AsyncScraper.PLUS_URL
-    for link in data:
-        await bot.send_message(chat_id=call.from_user.id,
-                               text=f"Services O!:"
-                               f"\n{links}{link}", reply_markup=await save_button())
+# async def async_service(call: types.CallbackQuery):
+#     # data = await AsyncScraper().async_scrapers()
+#     data = await AsyncScraper().async_scrapers()
+#     links = AsyncScraper.PLUS_URL
+#     for link in data:
+#         await bot.send_message(chat_id=call.from_user.id,
+#                                text=f"Services O!:"
+#                                f"\n{links}{link}", reply_markup=await save_button())
 
 def register_callback_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(start_questioner_call,
@@ -69,12 +69,12 @@ def register_callback_handlers(dp: Dispatcher):
                    lambda call: call.data == "Backend")
     dp.register_callback_query_handler(frontend_call,
                    lambda call: call.data == "Frontend")
-    dp.register_callback_query_handler(operator_O_scraper_call,
-                   lambda call: call.data == "operator_O!")
-    dp.register_callback_query_handler(async_service,
-                    lambda call: call.data == "async_service_O!")
-    dp.register_callback_query_handler(save_service_call,
-                    lambda call: call.data == "save_service")
+    # dp.register_callback_query_handler(operator_O_scraper_call,
+    #                lambda call: call.data == "operator_O!")
+    # dp.register_callback_query_handler(async_service,
+    #                 lambda call: call.data == "async_service_O!")
+    # dp.register_callback_query_handler(save_service_call,
+    #                 lambda call: call.data == "save_service")
 
 
 
